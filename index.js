@@ -4,6 +4,7 @@
 function ParamError(code, message) {
     this.name = 'route param error';
     this.code = code || 500;
+    this.status = 500;
     this.message = message || 'unknow error';
     this.stack = (new Error()).stack;
 }
@@ -14,6 +15,7 @@ ParamError.prototype.constructor = ParamError;
 function BusinessError(code, message) {
     this.name = 'business error';
     this.code = code || 500;
+    this.status = 500;
     this.message = message || 'unknow error';
     this.stack = (new Error()).stack;
 }
@@ -25,6 +27,7 @@ BusinessError.prototype.constructor = BusinessError;
 function UnckeckError(code, message) {
     this.name = 'Unckeck error';
     this.code = code || 500;
+    this.status = 500;
     this.message = message || 'unknow error';
     this.stack = (new Error()).stack;
 }
@@ -35,17 +38,31 @@ UnckeckError.prototype.constructor = UnckeckError;
 
 function NotFound(code, message) {
     this.name = 'resource not found';
-    this.code = code || 404;
+    this.code = code || 500;
+    this.status = 404;
     this.message = message || 'resource not found';
     this.stack = (new Error()).stack;
 }
 
 NotFound.prototype = Object.create(Error.prototype);
-NotFound.prototype.constructor = UnckeckError;
+NotFound.prototype.constructor = NotFound;
+
+
+function Unauthorized(code, message) {
+    this.name = 'Unauthorized';
+    this.code = code || 500;
+    this.status = 401;
+    this.message = message || 'Unauthorized';
+    this.stack = (new Error()).stack;
+}
+
+Unauthorized.prototype = Object.create(Error.prototype);
+Unauthorized.prototype.constructor = Unauthorized;
 
 module.exports = {
     ParamError: ParamError,
     BusinessError: BusinessError,
     UnckeckError: UnckeckError,
-    NotFound: NotFound
+    NotFound: NotFound,
+    Unauthorized: Unauthorized
 }
