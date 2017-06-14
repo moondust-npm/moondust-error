@@ -2,7 +2,7 @@
  * Created by Tristan on 2017/3/28.
  */
 function ParamError(code, message) {
-    this.name = 'route param error';
+    this.name = 'ParamError';
     this.code = code || 500;
     this.status = 500;
     this.message = message || 'unknow error';
@@ -13,7 +13,7 @@ ParamError.prototype.constructor = ParamError;
 
 
 function BusinessError(code, message) {
-    this.name = 'business error';
+    this.name = 'BusinessError';
     this.code = code || 500;
     this.status = 500;
     this.message = message || 'unknow error';
@@ -25,7 +25,7 @@ BusinessError.prototype.constructor = BusinessError;
 
 
 function UnckeckError(code, message) {
-    this.name = 'Unckeck error';
+    this.name = 'UnckeckError';
     this.code = code || 500;
     this.status = 500;
     this.message = message || 'unknow error';
@@ -37,7 +37,7 @@ UnckeckError.prototype.constructor = UnckeckError;
 
 
 function NotFound(code, message) {
-    this.name = 'resource not found';
+    this.name = 'NotFound';
     this.code = code || 500;
     this.status = 404;
     this.message = message || 'resource not found';
@@ -52,13 +52,12 @@ function Unauthorized(code, message) {
     this.name = 'Unauthorized';
     this.code = code || 500;
     this.status = 401;
-    this.message = message || 'Unauthorized';
+    this.message = message || 'Unauthorized error';
     this.stack = (new Error()).stack;
 }
 
 Unauthorized.prototype = Object.create(Error.prototype);
 Unauthorized.prototype.constructor = Unauthorized;
-
 module.exports = {
     ParamError: ParamError,
     BusinessError: BusinessError,
